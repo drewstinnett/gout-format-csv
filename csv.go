@@ -8,20 +8,21 @@ import (
 	"github.com/jszwec/csvutil"
 )
 
+// Formatter is the CSV formatter for Gout
 type Formatter struct {
-	headers []string
+	Headers []string
 }
 
 func (w Formatter) Format(v interface{}) ([]byte, error) {
 	// Just marshal if we don't have custom headers
-	if w.headers == nil {
+	if w.Headers == nil {
 		return csvutil.Marshal(v)
 	}
 	var buf bytes.Buffer
 	writer := csv.NewWriter(&buf)
 
 	// Write the custom header
-	if err := writer.Write(w.headers); err != nil {
+	if err := writer.Write(w.Headers); err != nil {
 		return nil, fmt.Errorf("failed to write header: %w", err)
 	}
 

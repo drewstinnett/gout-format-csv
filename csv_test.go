@@ -27,7 +27,7 @@ Got: %v
 
 func TestCSVFormatterCustomHeader(t *testing.T) {
 	got, err := Formatter{
-		headers: []string{"custom"},
+		Headers: []string{"custom"},
 	}.Format([]struct {
 		Foo string
 	}{
